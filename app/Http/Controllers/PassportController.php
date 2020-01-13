@@ -89,13 +89,13 @@ class PassportController extends Controller
 
     public function refresh()
     {
-        $response = (new Client())->post('http://laravel6c.test/api/oauth/token', [
+        $response = (new Client())->post('http://laravel6c.com/api/oauth/token', [
             'form_params' => [
                 'grant_type' => 'refresh_token',
                 'refresh_token' => request('refresh_token'),
                 'client_id' => $this->clientId,
                 'client_secret' => $this->clientSecret,
-                'scope' => '*',
+                'scope' => 'test1',
             ],
         ]);
 
@@ -110,7 +110,7 @@ class PassportController extends Controller
      */
     private function getToken()
     {
-        $response = (new Client())->post('http://laravel6c.test/api/oauth/token', [
+        $response = (new Client())->post('http://laravel6c.com/api/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'username' => request('email'),
