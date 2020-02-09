@@ -78,18 +78,19 @@ class PassportController extends Controller
     {
         $user = User::where($this->username(), request($this->username()))
             ->firstOrFail();
-
         if (!password_verify(request('password'), $user->password)) {
             return response()->json(['error' => '抱歉，账号名或者密码错误！'],
                 403);
         }
 
-        return $this->getToken();
+
+        return response($this->getToken());
+
     }
 
     public function refresh()
     {
-        $response = (new Client())->post('http://laravel6c.com/api/oauth/token', [
+        $response = (new Client())->post('http://ankich-api.com/api/oauth/token', [
             'form_params' => [
                 'grant_type' => 'refresh_token',
                 'refresh_token' => request('refresh_token'),
@@ -98,7 +99,6 @@ class PassportController extends Controller
                 'scope' => 'test1',
             ],
         ]);
-
         return $response;
     }
 
@@ -110,7 +110,7 @@ class PassportController extends Controller
      */
     private function getToken()
     {
-        $response = (new Client())->post('http://laravel6c.com/api/oauth/token', [
+        $response = (new Client())->post('http://ankich-api.com/api/oauth/token', [
             'form_params' => [
                 'grant_type' => 'password',
                 'username' => request('email'),
@@ -120,7 +120,6 @@ class PassportController extends Controller
                 'scope' => 'test1',
             ],
         ]);
-
-        return $response;
+        return $response->getBody();
     }
 }

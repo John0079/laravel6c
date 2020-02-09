@@ -9,6 +9,13 @@
 
 define('LARAVEL_START', microtime(true));
 
+    header('Content-Type:application/json;charset=utf-8');
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods:GET, POST, PUT, OPTIONS, DELETE");
+    header("Access-Control-Allow-Headers:access-control-allow-origin,content-type,x-requested-with,authorization");
+
+
+//header("Access-Control-Allow-Headers:token,content-type,x-requested-with");
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

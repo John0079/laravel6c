@@ -19,6 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('avatar')->default('default')->comment('用户头像');
+            $table->smallInteger('is_active')->default(0)->comment("用户是否激活");
+            $table->smallInteger('level')->default(1)->comment('用户级别');
+            $table->json('production')->nullable()->comment('在网站上的贡献');
+            $table->json('setting')->nullable()->comment('用户设置');
             $table->rememberToken();
             $table->timestamps();
         });

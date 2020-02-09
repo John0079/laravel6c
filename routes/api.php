@@ -46,3 +46,23 @@ Route::get('test', function () {
 Route::post('tt', function () {
     return 'ok';
 });
+
+
+
+Route::get('testcccc', function () {
+    return auth()->user();
+})->middleware('auth');
+
+
+Route::resource('user', 'UserController')->middleware('auth');
+Route::post('/user/search', 'UserController@search')->middleware('auth');
+
+
+
+Route::resource('paragraph', 'ParagraphController');
+Route::resource('cartoon', 'CartoonController');
+Route::resource('article', 'ArticleController');
+Route::resource('deck', 'DeckController');
+Route::resource('category', 'CategoryController');
+Route::resource('right', 'RightController');
+Route::resource('role', 'RoleController');
